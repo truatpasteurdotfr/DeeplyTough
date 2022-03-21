@@ -118,6 +118,9 @@ jobs:
           recipe: ${{ matrix.recipe }}
         run: |
          ls 
+         echo "fix for mixed case repository non compatible with docker/oras"
+         XXX=`echo ${GITHUB_REPOSITORY}| tr '[A-Z]' '[a-z]'`
+         echo ${XXX}
          if [ -f "${{ matrix.recipe }}" ]; then
             singularity build container.sif ${{ matrix.recipe }}
             tag=latest
@@ -133,5 +136,5 @@ jobs:
         run: |         
             if [[ "${keepgoing}" == "true" ]]; then
                 echo ${{ secrets.GITHUB_TOKEN }} | singularity remote login -u ${{ secrets.GHCR_USERNAME }} --password-stdin oras://ghcr.io
-                singularity push container.sif oras://ghcr.io/${GITHUB_REPOSITORY}:${tag}
+                singularity push container.sif oras://ghcr.io/${XXX}:${tag}
             fi
