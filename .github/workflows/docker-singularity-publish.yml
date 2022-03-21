@@ -121,6 +121,7 @@ jobs:
          echo "fix for mixed case repository non compatible with docker/oras"
          XXX=`echo ${GITHUB_REPOSITORY}| tr '[A-Z]' '[a-z]'`
          echo ${XXX}
+         echo "XXX=${XXX}" >> $GITHUB_ENV
          if [ -f "${{ matrix.recipe }}" ]; then
             singularity build container.sif ${{ matrix.recipe }}
             tag=latest
