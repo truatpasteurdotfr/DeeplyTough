@@ -1,5 +1,5 @@
 BootStrap: docker
-From: ghcr.io/truatpasteurdotfr/DeeplyTough:main
+From: ghcr.io/truatpasteurdotfr/DeeplyTough:master
 
 %post
 date +"%Y-%m-%d-%H%M" > /last_update
